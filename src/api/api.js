@@ -37,11 +37,11 @@ export const api = {
     }).then(handleResponse),
 
   me: () =>
-    fetch(`${BASE_URL}/api/auth/me`, { headers: authHeaders() }).then(handleResponse),
+    fetch(`${BASE_URL}/api/auth/me?t=${Date.now()}`, { headers: authHeaders() }).then(handleResponse),
 
   // Expenses
   getExpenses: (type) =>
-    fetch(`${BASE_URL}/api/expenses${type ? `?type=${type}` : ''}`, {
+    fetch(`${BASE_URL}/api/expenses${type ? `?type=${type}&t=${Date.now()}` : `?t=${Date.now()}`}`, {
       headers: authHeaders()
     }).then(handleResponse),
 
@@ -71,7 +71,7 @@ export const api = {
 
   // Family
   getFamily: () =>
-    fetch(`${BASE_URL}/api/family`, { headers: authHeaders() }).then(handleResponse),
+    fetch(`${BASE_URL}/api/family?t=${Date.now()}`, { headers: authHeaders() }).then(handleResponse),
 
   createFamily: (name) =>
     fetch(`${BASE_URL}/api/family/create`, {
@@ -107,7 +107,7 @@ export const api = {
 
   // Notifications
   getNotifications: () =>
-    fetch(`${BASE_URL}/api/notifications`, { headers: authHeaders() }).then(handleResponse),
+    fetch(`${BASE_URL}/api/notifications?t=${Date.now()}`, { headers: authHeaders() }).then(handleResponse),
 
   markNotificationRead: (id) =>
     fetch(`${BASE_URL}/api/notifications/${id}/read`, {
@@ -135,7 +135,7 @@ export const api = {
 
   // Budgets (month-aware)
   getBudgets: () =>
-    fetch(`${BASE_URL}/api/budgets`, { headers: authHeaders() }).then(handleResponse),
+    fetch(`${BASE_URL}/api/budgets?t=${Date.now()}`, { headers: authHeaders() }).then(handleResponse),
 
   updateBudget: (id, body) =>
     fetch(`${BASE_URL}/api/budgets/${id}`, {
