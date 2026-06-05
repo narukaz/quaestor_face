@@ -59,7 +59,7 @@ function Dashboard() {
     api.me().then(data => {
       updateUser(data.user)
       setShowOnboarding(!data.user?.familyId)
-    }).catch(() => {})
+    }).catch(() => { })
   }, [updateUser])
 
   const handleWizardComplete = useCallback((family) => {
