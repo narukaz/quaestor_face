@@ -20,13 +20,14 @@ function Dashboard() {
   const [budgetType, setBudgetType] = useState('Personal')
   const [transactions, setTransactions] = useState([])
   const [txLoading, setTxLoading] = useState(true)
+  const [txCount, setTxCount] = useState(0) // Trigger to refresh SpendCard
   const [showWizard, setShowWizard] = useState(false)
   // Show welcome prompt once for users with no family
   const [showOnboarding, setShowOnboarding] = useState(!user?.familyId)
 
-  const loadTransactions = useCallback(async () => {
+  const loadTransactions = useCallback(async (silent = false) => {
     try {
-      setTxLoading(true)
+      if (!silent) setTxLoading(true)
       const type = budgetType === 'Family' ? 'shared' : 'personal'
       const data = await api.getExpenses(type)
       const mapped = (data.expenses || []).map(exp => ({
@@ -44,7 +45,7 @@ function Dashboard() {
     } catch {
       setTransactions([])
     } finally {
-      setTxLoading(false)
+      if (!silent) setTxLoading(false)
     }
   }, [budgetType])
 
@@ -52,7 +53,9 @@ function Dashboard() {
 
   const handleAddTransaction = useCallback((newTx) => {
     setTransactions(prev => [newTx, ...prev])
-    setTimeout(() => loadTransactions(), 600)
+    setTxCount(prev => prev + 1) // Force SpendCard to refresh spending values
+    // Reload silently in the background so the list doesn't flicker or show a spinner
+    loadTransactions(true)
   }, [loadTransactions])
 
   const handleFamilyUpdate = useCallback(() => {
@@ -78,7 +81,7 @@ function Dashboard() {
 
       <div className="main-content">
         <div className="left-column">
-          <SpendCard budgetType={budgetType} setBudgetType={setBudgetType} />
+          <SpendCard budgetType={budgetType} setBudgetType={setBudgetType} refreshTrigger={txCount} />
 
           {/* Personal budget editor — always visible in left column */}
           <div className="budget-section-card">

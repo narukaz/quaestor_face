@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react'
 import { api } from '../../api/api'
 import './SpendCard.css'
 
-export default function SpendCard({ budgetType, setBudgetType }) {
+export default function SpendCard({ budgetType, setBudgetType, refreshTrigger }) {
   const now = new Date()
   const CURRENT_YEAR = now.getFullYear()
   const CURRENT_MONTH_INDEX = now.getMonth()
@@ -69,7 +69,7 @@ export default function SpendCard({ budgetType, setBudgetType }) {
     }
   }, [budgetType, CURRENT_YEAR, CURRENT_MONTH_INDEX])
 
-  useEffect(() => { loadData() }, [loadData])
+  useEffect(() => { loadData() }, [loadData, refreshTrigger])
 
   const getBarData = () => {
     const baseData = [35, 45, 25, 60, 75, 50, 40, 65, 80, 55, 30, 45]
