@@ -92,8 +92,9 @@ export default function SpendCard({ budgetType, setBudgetType }) {
   // Spend value: use real data for current month, mock math for past months
   const getSpendValue = () => {
     if (isFutureMonth()) return '$0.00'
-    if (isCurrentMonth() && totalSpent !== null) {
-      return `$${totalSpent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+    if (isCurrentMonth()) {
+      const val = totalSpent || 0
+      return `$${val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
     }
     // Past month fallback mock
     if (rangeStart === null) return '$0.00'
