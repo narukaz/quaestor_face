@@ -1,34 +1,16 @@
-# Quaestor Client UI (Frontend)
+QUAESTOR_FACE: client UI to interact with the Quaestor service (frontend)
+-> "npm i" install dependencies.
+-> create a .env and put VITE_API_URL in it to communicate with your backend
+-> "npm run dev" 
 
-Client UI to interact with the Quaestor expense tracking service.
 
-## How to Run the Project Locally
 
-1. **Install dependencies**:
-   ```bash
-   npm install
-   ```
 
-2. **Configure environment variables**:
-   Create a `.env` file in the root directory and define `VITE_API_URL` to point to your backend service (local or cloud):
-   ```env
-   VITE_API_URL=http://localhost:3001
-   ```
+what i can improve
+-> currently when we set monthly budget it is not to obviou or have a bad UX it need to be treated carefully.
+-> creating a family group needs to be done from family group at this moment which is also not a effect positioning so that can be imporved.
+-> current code is not optimized for phone so that can be imprved to increase user base for both devices
 
-3. **Start the development server**:
-   ```bash
-   npm run dev
-   ```
-
-## Future Improvements & UX enhancements
-
-- **UX for Monthly Budget**: Improve the visual clarity and interactive flow for setting and editing the monthly budget.
-- **Onboarding Flow Placement**: Restructure the positioning of the "Create Family Group" feature to make it more intuitive during onboarding.
-- **Mobile Optimization**: Optimize the layout and responsive design to support mobile device interfaces.
-
----
-
-## Test Account Credentials
 
 The database has been seeded with the following test accounts:
 
