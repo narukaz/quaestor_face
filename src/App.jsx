@@ -28,8 +28,7 @@ function Dashboard() {
   const loadTransactions = useCallback(async (silent = false) => {
     try {
       if (!silent) setTxLoading(true)
-      const type = budgetType === 'Family' ? 'shared' : 'personal'
-      const data = await api.getExpenses(type)
+      const data = await api.getExpenses() // Fetch all transactions (personal + shared)
       const mapped = (data.expenses || []).map(exp => ({
         _id: exp._id,
         title: exp.description,
@@ -47,7 +46,7 @@ function Dashboard() {
     } finally {
       if (!silent) setTxLoading(false)
     }
-  }, [budgetType])
+  }, [])
 
   useEffect(() => { loadTransactions() }, [loadTransactions])
 
