@@ -5,7 +5,7 @@ import './BudgetEditor.css'
 
 const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 
-export default function BudgetEditor({ type = 'personal', label = 'Personal Budget' }) {
+export default function BudgetEditor({ type = 'personal', label = 'Personal Budget', onBudgetUpdate }) {
   const [budget, setBudget] = useState(null)
   const [loading, setLoading] = useState(true)
   const [editing, setEditing] = useState(false)
@@ -61,6 +61,7 @@ export default function BudgetEditor({ type = 'personal', label = 'Personal Budg
       setBudget(data.budget)
       setEditing(false)
       setFeedback({ type: 'success', msg: 'Budget saved!' })
+      if (onBudgetUpdate) onBudgetUpdate()
       setTimeout(() => setFeedback(null), 3000)
     } catch (err) {
       setFeedback({ type: 'error', msg: err.message })

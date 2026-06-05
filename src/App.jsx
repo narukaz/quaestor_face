@@ -84,7 +84,7 @@ function Dashboard() {
 
           {/* Personal budget editor — always visible in left column */}
           <div className="budget-section-card">
-            <BudgetEditor type="personal" label="Personal Monthly Budget" />
+            <BudgetEditor type="personal" label="Personal Monthly Budget" onBudgetUpdate={() => setTxCount(prev => prev + 1)} />
           </div>
 
           <AddTransactionCard
@@ -132,6 +132,7 @@ function Dashboard() {
         onLogout={logout}
         onFamilyUpdate={handleFamilyUpdate}
         onCreateFamily={() => setShowWizard(true)}
+        onBudgetUpdate={() => setTxCount(prev => prev + 1)}
       />
 
       {/* Family creation wizard */}

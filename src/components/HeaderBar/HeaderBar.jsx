@@ -8,7 +8,8 @@ export default function HeaderBar({
   user = { name: 'Guest', email: '' },
   onLogout = () => {},
   onFamilyUpdate,
-  onCreateFamily
+  onCreateFamily,
+  onBudgetUpdate
 }) {
   const [activeDrawer, setActiveDrawer] = useState(null) // 'profile' | 'notifications' | null
   const [notifications, setNotifications] = useState([])
@@ -199,7 +200,7 @@ export default function HeaderBar({
               <div className="drawer-divider" />
 
               {/* Family section inside profile */}
-              <FamilyPanel onFamilyUpdate={onFamilyUpdate} onCreateFamily={() => { closeDrawer(); onCreateFamily && onCreateFamily() }} />
+              <FamilyPanel onFamilyUpdate={onFamilyUpdate} onCreateFamily={() => { closeDrawer(); onCreateFamily && onCreateFamily() }} onBudgetUpdate={onBudgetUpdate} />
 
               <div className="drawer-divider" />
 

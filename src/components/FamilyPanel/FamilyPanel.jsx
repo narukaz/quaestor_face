@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext'
 import BudgetEditor from '../BudgetEditor/BudgetEditor'
 import './FamilyPanel.css'
 
-export default function FamilyPanel({ onFamilyUpdate, onCreateFamily }) {
+export default function FamilyPanel({ onFamilyUpdate, onCreateFamily, onBudgetUpdate }) {
   const { user, updateUser } = useAuth()
   const [family, setFamily] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -115,7 +115,7 @@ export default function FamilyPanel({ onFamilyUpdate, onCreateFamily }) {
           {/* Budget editor */}
           <div className="family-section">
             <h4 className="family-section-title">Monthly Budget</h4>
-            <BudgetEditor type="shared" label="Family Budget" />
+            <BudgetEditor type="shared" label="Family Budget" onBudgetUpdate={onBudgetUpdate} />
           </div>
 
           {/* Members list */}
