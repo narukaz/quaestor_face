@@ -1,0 +1,200 @@
+.budget-editor {
+  background: rgba(249, 250, 251, 0.6);
+  border: 1px solid rgba(229, 228, 231, 0.5);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.budget-editor-loading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #b0aab8;
+  padding: 10px 0;
+}
+
+.be-spin { animation: be-spin-anim 0.8s linear infinite; }
+@keyframes be-spin-anim { to { transform: rotate(360deg); } }
+
+.be-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.be-label-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.be-icon { color: #818cf8; }
+.be-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #6b6375;
+}
+.be-lock-icon { color: #d97706; }
+
+.be-month {
+  font-size: 11px;
+  color: #b0aab8;
+  font-weight: 500;
+}
+
+/* Feedback */
+.be-feedback {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+.be-feedback-success {
+  background: rgba(34, 197, 94, 0.08);
+  color: #15803d;
+}
+.be-feedback-error {
+  background: rgba(239, 68, 68, 0.07);
+  color: #dc2626;
+}
+
+/* Display */
+.be-display {}
+.be-amount-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.be-amount {
+  font-size: 20px;
+  font-weight: 800;
+  color: #08060d;
+  letter-spacing: -0.5px;
+}
+.be-unset {
+  font-size: 14px;
+  font-weight: 500;
+  color: #b0aab8;
+}
+
+.be-edit-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  background: rgba(129, 140, 248, 0.1);
+  border: 1px solid rgba(129, 140, 248, 0.2);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4f46e5;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.be-edit-btn:hover { background: rgba(129, 140, 248, 0.18); }
+
+.be-locked-tag {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #d97706;
+  padding: 4px 8px;
+  background: rgba(251, 191, 36, 0.08);
+  border-radius: 6px;
+}
+
+.be-locked-msg {
+  font-size: 11.5px;
+  color: #b0aab8;
+  line-height: 1.5;
+  margin: 4px 0 0;
+}
+
+/* Edit form */
+.be-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.be-input-wrap {
+  position: relative;
+}
+.be-currency {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight: 700;
+  color: #6b6375;
+  pointer-events: none;
+}
+.be-input {
+  width: 100%;
+  padding: 9px 12px 9px 26px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #08060d;
+  background: white;
+  border: 1.5px solid #818cf8;
+  border-radius: 10px;
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
+  letter-spacing: -0.3px;
+}
+.be-input::-webkit-inner-spin-button,
+.be-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+.be-edit-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.be-cancel-btn {
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid #e5e4e7;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #6b6375;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.be-cancel-btn:hover { background: rgba(229, 228, 231, 0.5); }
+
+.be-save-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, #818cf8, #6d28d9);
+  border: none;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.15s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(109, 40, 217, 0.25);
+}
+.be-save-btn:hover:not(:disabled) { transform: translateY(-1px); }
+.be-save-btn:disabled { opacity: 0.45; cursor: not-allowed; }

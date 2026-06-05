@@ -1,0 +1,493 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.spend-card {
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  width: 100%; /* Occupies the full 40% chunk of the main container */
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(0, 0, 0, 0.07); /* Very dull outline */
+  border-radius: 28px; /* High rounding */
+  padding: 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Left aligned layout */
+  position: relative;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.spend-card:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.spend-card.clickable {
+  cursor: pointer;
+}
+
+
+/* Card Controls - partially visible by default, fully visible on hover */
+.card-controls {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  gap: 8px;
+  opacity: 0.2; /* 20% visible by default */
+  pointer-events: auto;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+}
+
+.spend-card:hover .card-controls {
+  opacity: 1;
+}
+
+.control-btn {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: #4b5563;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.control-btn:hover {
+  background: #ffffff;
+  color: #1e1b4b;
+  border-color: rgba(30, 27, 75, 0.15);
+}
+
+.control-btn.active {
+  background: #1e1b4b;
+  color: #ffffff;
+  border-color: #1e1b4b;
+}
+
+/* Text & Value Styling */
+.card-label-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #6b7280;
+  flex-wrap: wrap;
+}
+
+.month-label, .budget-label {
+  text-transform: capitalize;
+}
+
+.budget-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(30, 27, 75, 0.05);
+  color: #1e1b4b;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.budget-type-badge:hover {
+  background: rgba(30, 27, 75, 0.1);
+  border-color: rgba(30, 27, 75, 0.15);
+}
+
+.budget-type-badge.active {
+  background: #1e1b4b;
+  color: #ffffff;
+  border-color: #1e1b4b;
+}
+
+.dropdown-arrow {
+  font-size: 0.6rem;
+  transition: transform 0.2s ease;
+  opacity: 0.8;
+}
+
+.budget-type-badge.active .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Reserved selector styling */
+.budget-type-selector-wrapper {
+  width: 100%;
+  height: 48px; /* Fixed space reserved at all times */
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.budget-type-selector-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  width: fit-content;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-4px);
+}
+
+.budget-type-selector-wrapper.expanded .budget-type-selector-inner {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.selector-instruction {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.selector-options {
+  display: flex;
+  gap: 6px;
+}
+
+.selector-opt-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4b5563;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.selector-opt-btn:hover {
+  background: rgba(0, 0, 0, 0.03);
+  color: #111827;
+}
+
+.selector-opt-btn.selected {
+  background: #1e1b4b;
+  color: #ffffff;
+}
+
+.value-container {
+  width: 100%;
+  margin: 12px 0 8px;
+  box-sizing: border-box;
+}
+
+.value-container.clickable {
+  cursor: pointer;
+}
+
+.spend-value {
+  font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  font-size: 3.8rem;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.04em;
+  margin: 0;
+  line-height: 1.1;
+  transition: color 0.2s ease;
+}
+
+.value-container.clickable:hover .spend-value {
+  color: #4f46e5; /* Subtle purple highlight on hover */
+}
+
+/* Expandable Calendar Dropdown Section */
+.calendar-dropdown-section {
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.3s ease, 
+              padding 0.3s ease, 
+              margin 0.3s ease;
+  box-sizing: border-box;
+}
+
+.calendar-dropdown-section.expanded {
+  max-height: 420px;
+  opacity: 1;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 24px;
+  margin-top: 20px;
+}
+
+/* Calendar Header */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.calendar-month-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.02em;
+}
+
+.nav-arrow-btn {
+  background: none;
+  border: none;
+  color: #4b5563;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.nav-arrow-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #111827;
+}
+
+/* Days Calendar Grid */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px 8px;
+  width: 100%;
+  justify-items: center;
+}
+
+.weekday-header {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #9ca3af;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weekday-header.text-weekend {
+  color: #4b5563;
+}
+
+.day-cell-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 40px; /* Make the wrapper high enough to cover the highlight strip */
+  box-sizing: border-box;
+}
+
+/* Base highlight bar color: rgba(37, 99, 235, 0.08) */
+.range-mid-wrapper {
+  background-color: rgba(37, 99, 235, 0.08);
+}
+
+.range-start-wrapper {
+  background: linear-gradient(to right, transparent 50%, rgba(37, 99, 235, 0.08) 50%);
+}
+
+.range-end-wrapper {
+  background: linear-gradient(to left, transparent 50%, rgba(37, 99, 235, 0.08) 50%);
+}
+
+/* Rounding corners on row bounds */
+.range-mid-wrapper.round-left {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.range-mid-wrapper.round-right {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.day-cell-btn {
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 2; /* Sits above the wrapper background */
+}
+
+.day-cell-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.day-cell-btn.weekend {
+  color: #6b7280;
+}
+
+/* Solid Blue Active circle for Start and End */
+.day-cell-btn.selected-button {
+  background: #2563eb !important; /* Rich solid blue */
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+.day-cell-btn.disabled {
+  opacity: 0.25;
+  color: #9ca3af !important;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.day-empty-cell {
+  width: 32px;
+  height: 32px;
+}
+
+/* Future Time Machine warning styles */
+.time-machine-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.time-machine-message {
+  font-family: 'Playfair Display', Georgia, cursive, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #4b5563;
+  margin: 0;
+  max-width: 290px;
+}
+
+/* Subtle Bar Graph Styling */
+.card-bar-graph {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  height: 42px; /* Sleek compact height */
+  margin: 12px 0 24px 0; /* Creates nice spacing above calendar */
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+.bar-wrapper {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(0, 0, 0, 0.015); /* Sleek background track slot */
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  width: 100%;
+  background: #1e1b4b;
+  opacity: 0.08; /* Very low opacity by default */
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.spend-card:hover .bar-fill {
+  opacity: 0.13; /* Glows slightly on card hover */
+}
+
+.bar-fill.active {
+  background: #2563eb; /* Active blue theme color */
+  opacity: 0.22; /* Slightly higher opacity for active range */
+}
+
+.spend-card:hover .bar-fill.active {
+  opacity: 0.32; /* Extra glow for active on hover */
+}
+
+/* Responsive sizes */
+@media (max-width: 480px) {
+  .spend-value {
+    font-size: 3rem;
+  }
+  .day-cell-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+}
+
+/* ── Budget progress bar ── */
+.budget-progress-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 6px;
+}
+.budget-progress-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #6b7280;
+}
+.budget-progress-limit { color: #6b7280; }
+.budget-progress-limit.over { color: #dc2626; }
+
+.budget-progress-track {
+  width: 100%;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.budget-progress-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.budget-ok   { background: linear-gradient(90deg, #22c55e, #16a34a); }
+.budget-warn { background: linear-gradient(90deg, #f59e0b, #d97706); }
+.budget-over { background: linear-gradient(90deg, #ef4444, #dc2626); }
+
+.budget-not-set-hint {
+  font-size: 11px;
+  color: #b0aab8;
+  margin-bottom: 4px;
+}
+

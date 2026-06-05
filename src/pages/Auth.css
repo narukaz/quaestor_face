@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.auth-screen {
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-main);
+}
+
+/* Ambient blobs — same as main app layout */
+.auth-ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.auth-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.auth-blob-yellow {
+  top: -10%;
+  right: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(254, 215, 170, 0.45) 0%, rgba(254, 240, 138, 0.25) 50%, transparent 80%);
+}
+
+.auth-blob-purple {
+  top: 20%;
+  left: -15%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(237, 233, 254, 0.65) 0%, rgba(224, 231, 255, 0.4) 50%, transparent 80%);
+}
+
+.auth-blob-pink {
+  bottom: -5%;
+  right: 10%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(254, 228, 230, 0.6) 0%, rgba(252, 231, 243, 0.3) 50%, transparent 80%);
+}
+
+/* Auth Card — matching SpendCard & TransactionList frosted glassmorphic styles */
+.auth-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 28px;
+  padding: 48px 44px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: none;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+.auth-card:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+/* Headings */
+.auth-heading {
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.6px;
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+
+.auth-subheading {
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 28px;
+  font-weight: 500;
+}
+
+/* Form inputs & fields */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4b5563;
+  letter-spacing: 0.1px;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  font-size: 14.5px;
+  font-family: inherit;
+  color: #111827;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.auth-input::placeholder {
+  color: #9ca3af;
+  opacity: 0.6;
+}
+
+.auth-input:focus {
+  border-color: rgba(30, 27, 75, 0.25);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(30, 27, 75, 0.05);
+}
+
+.auth-input.error {
+  border-color: #fca5a5;
+  background: rgba(254, 226, 226, 0.3);
+  color: #dc2626;
+}
+
+/* Error message box */
+.auth-error-box {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #dc2626;
+  font-family: 'Playfair Display', Georgia, cursive, serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Submit button — matches AddTransactionCard black/navy invert design */
+.auth-submit-btn {
+  margin-top: 6px;
+  padding: 13px;
+  width: 100%;
+  background: #1e1b4b; /* Navy primary */
+  color: white;
+  border: 1.5px solid transparent;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: none;
+  letter-spacing: 0.1px;
+}
+
+.auth-submit-btn:hover:not(:disabled) {
+  background: #ffffff;
+  color: #1e1b4b;
+  border-color: #1e1b4b;
+  transform: translateY(-1px);
+}
+
+.auth-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.auth-submit-btn:disabled {
+  background: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.auth-submit-btn.loading {
+  opacity: 0.75;
+}
+
+/* Footer Link */
+.auth-footer {
+  margin-top: 22px;
+  text-align: center;
+  font-size: 13.5px;
+  color: #6b7280;
+}
+
+.auth-footer a {
+  color: #2563eb; /* Theme Blue */
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.auth-footer a:hover {
+  opacity: 0.8;
+}
+
+/* Two-column layout */
+.auth-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 500px) {
+  .auth-card {
+    padding: 36px 24px;
+    border-radius: 20px;
+    margin: 16px;
+  }
+  .auth-row {
+    grid-template-columns: 1fr;
+  }
+}

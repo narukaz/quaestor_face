@@ -1,0 +1,303 @@
+.add-tx-card {
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 28px;
+  padding: 28px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.add-tx-card:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.add-tx-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.add-tx-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.add-tx-scope-selector {
+  display: flex;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 2px;
+  border-radius: 8px;
+  gap: 1px;
+}
+
+.scope-tag {
+  background: transparent;
+  border: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scope-tag:hover:not(.active) {
+  color: #111827;
+}
+
+.scope-tag.active {
+  background: #1e1b4b;
+  color: #ffffff;
+}
+
+
+.add-tx-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  font-family: 'Outfit', sans-serif;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  color: #111827;
+}
+
+.form-input:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: rgba(30, 27, 75, 0.15);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.text-input {
+  font-size: 0.95rem;
+  padding: 10px 14px;
+}
+
+.amount-input {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  letter-spacing: -0.02em;
+}
+
+.amount-input::placeholder {
+  color: #9ca3af;
+  opacity: 0.6;
+}
+
+.amount-input.input-error {
+  border-color: #fca5a5;
+  background: rgba(254, 226, 226, 0.3);
+  color: #dc2626;
+}
+
+.error-message-text {
+  font-family: 'Playfair Display', Georgia, cursive, serif;
+  font-style: italic;
+  color: #dc2626;
+  font-size: 0.9rem;
+  margin-top: 6px;
+  display: block;
+}
+
+/* Category Picker Pills */
+.categories-section {
+  margin-top: 4px;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.category-pill-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid transparent;
+  padding: 8px 6px;
+  border-radius: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(0, 0, 0, 0.02);
+  color: #6b7280;
+}
+
+.cat-pill-icon {
+  flex-shrink: 0;
+}
+
+/* Category Hover Colors matching pastels */
+.cat-coral:hover, .cat-coral.selected {
+  background: rgba(254, 226, 226, 0.8);
+  border-color: rgba(252, 165, 165, 0.35);
+  color: #991b1b;
+}
+
+.cat-purple:hover, .cat-purple.selected {
+  background: rgba(243, 232, 255, 0.8);
+  border-color: rgba(216, 180, 254, 0.35);
+  color: #6b21a8;
+}
+
+.cat-mint:hover, .cat-mint.selected {
+  background: rgba(209, 250, 229, 0.8);
+  border-color: rgba(167, 243, 208, 0.35);
+  color: #065f46;
+}
+
+.cat-pink:hover, .cat-pink.selected {
+  background: rgba(254, 228, 230, 0.8);
+  border-color: rgba(251, 113, 133, 0.25);
+  color: #9f1239;
+}
+
+.cat-indigo:hover, .cat-indigo.selected {
+  background: rgba(224, 231, 255, 0.8);
+  border-color: rgba(165, 180, 252, 0.35);
+  color: #3730a3;
+}
+
+.cat-yellow:hover, .cat-yellow.selected {
+  background: rgba(254, 249, 195, 0.8);
+  border-color: rgba(253, 224, 71, 0.35);
+  color: #854d0e;
+}
+
+/* Big Black Circular Plus Button */
+.submit-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.submit-circle-btn {
+  background: #000000;
+  color: #ffffff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+  transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s;
+  position: relative;
+  overflow: visible;
+}
+
+/* Hover: button grows a little, icon anticipates by tilting */
+.submit-circle-btn:hover:not(:disabled) {
+  background: #ffffff;
+  color: #000000;
+  border-color: #000000;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.submit-circle-btn:disabled {
+  background: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ── Plus icon animations ── */
+
+/* Default state: still */
+.plus-icon {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: block;
+}
+
+/* Hover anticipation: tilt +45° when button is hovered and NOT submitting */
+.submit-circle-btn:hover:not(:disabled) .plus-icon:not(.spinning) {
+  transform: rotate(45deg);
+}
+
+/* Active press: quick compress tilt the other way */
+.submit-circle-btn:active:not(:disabled) .plus-icon:not(.spinning) {
+  transform: rotate(-45deg) scale(0.9);
+}
+
+/* Submitting: continuous spin */
+@keyframes spinIcon {
+  0%   { transform: rotate(45deg); }   /* start from anticipate angle */
+  100% { transform: rotate(405deg); }  /* = one full loop from 45deg */
+}
+
+.plus-icon.spinning {
+  animation: spinIcon 0.55s linear infinite;
+  transition: none; /* no transition during spin */
+}
+
+/* Settle: spring back with a bounce once submitting ends */
+.plus-icon.settling {
+  animation: settle-spring 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes settle-spring {
+  0%   { transform: rotate(360deg); }
+  60%  { transform: rotate(-10deg); }
+  80%  { transform: rotate(6deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Responsive wrap */
+@media (max-width: 480px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .add-tx-card {
+    padding: 20px 24px;
+  }
+}
